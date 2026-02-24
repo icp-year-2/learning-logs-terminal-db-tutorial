@@ -74,8 +74,20 @@ public class TopicDaoImpl implements TopicDao {
     @Override
     public boolean insertTopic(Topic topic) {
         // Write your code here
-
-        return false; // ← Replace this
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "INSERT INTO topics (name) VALUES (?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, topic.getName());
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error inserting topic: " + e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
     }
 
     // ============================================================
@@ -131,7 +143,27 @@ public class TopicDaoImpl implements TopicDao {
     @Override
     public ArrayList<Topic> fetchAllTopics() {
         // Write your code here
-
-        return null; // ← Replace this
+        ArrayList<Topic> topics = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT * FROM topics";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Topic topic = new Topic(                    
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getTimestamp("created_at"),
+                    rs.getTimestamp("updated_at")
+                );
+                topics.add(topic);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching topics: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+        return topics;
     }
 }

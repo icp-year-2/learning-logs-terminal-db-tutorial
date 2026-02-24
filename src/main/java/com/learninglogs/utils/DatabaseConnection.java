@@ -66,6 +66,9 @@ public class DatabaseConnection {
     //   private static final String DB_USER = "root";
     //   private static final String DB_PASSWORD = "";
     // ============================================================
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/learning_logs";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "";
 
 
 
@@ -91,8 +94,7 @@ public class DatabaseConnection {
     // ============================================================
     public static Connection getConnection() throws SQLException {
         // Write your code here
-
-        return null; // ← Replace this
+        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
     }
 
     // ============================================================
@@ -126,5 +128,12 @@ public class DatabaseConnection {
     // ============================================================
     public static void closeConnection(Connection connection) {
         // Write your code here
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error closing connection: " + e.getMessage());
+        }
     }
 }

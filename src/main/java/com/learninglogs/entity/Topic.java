@@ -44,7 +44,10 @@ public class Topic {
     //
     // Hint: private int id;
     // ============================================================
+    private int id; // ← provided (needed by the full constructor)
     private String name; // ← provided (needed by the simple constructor)
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
 
 
@@ -83,7 +86,12 @@ public class Topic {
     //       this.updatedAt = updatedAt;
     //   }
     // ============================================================
-
+    public Topic(int id, String name, Timestamp createdAt, Timestamp updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 
 
     // ============================================================
@@ -100,26 +108,28 @@ public class Topic {
     // ============================================================
     public int getId() {
         // Write your code here
-        return 0; // ← Replace this
+        return id;
     }
 
     public String getName() {
         // Write your code here
-        return null; // ← Replace this
+        return name;
     }
 
     public Timestamp getCreatedAt() {
         // Write your code here
-        return null; // ← Replace this
+        return createdAt;
     }
+
 
     public Timestamp getUpdatedAt() {
         // Write your code here
-        return null; // ← Replace this
+        return updatedAt;
     }
 
     public void setName(String name) {
         // Write your code here
+        this.name = name;
     }
 
     // ============================================================
@@ -134,6 +144,9 @@ public class Topic {
     //
     // Hint: return "[" + id + "] " + name + " (Created: " + createdAt + ")";
     // ============================================================
-
-
+    @Override
+    public String toString() {
+        // Write your code here
+        return "[" + id + "] " + name + " (Created: " + createdAt + ")";
+    }
 }
