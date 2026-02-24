@@ -23,4 +23,17 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <mainClass>com.learninglogs.LearningLogs</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

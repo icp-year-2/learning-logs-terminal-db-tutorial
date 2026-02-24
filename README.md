@@ -332,6 +332,28 @@ With Maven:
 </dependency>
 ```
 
+Maven can also run **plugins** — tools that add extra abilities. In this project, we use the `exec-maven-plugin` to tell Maven which class to run:
+
+```xml
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <configuration>
+        <mainClass>com.learninglogs.LearningLogs</mainClass>
+    </configuration>
+</plugin>
+```
+
+Without this plugin, you'd have to type the full class path every time:
+```bash
+mvn compile exec:java -Dexec.mainClass="com.learninglogs.LearningLogs"
+```
+
+With it, Maven already knows which class has `main()`, so you just run:
+```bash
+mvn compile exec:java
+```
+
 ---
 
 ## Prerequisites — What You Need & Why
@@ -651,9 +673,9 @@ Work through the TODOs **in order** (1 → 9). Each TODO has:
 ### Step 6: Run the App
 Make sure XAMPP MySQL is running, then:
 ```bash
-mvn compile exec:java -Dexec.mainClass="com.learninglogs.LearningLogs"
+mvn compile exec:java
 ```
-Or run `LearningLogs.java` directly from IntelliJ.
+Or run `LearningLogs.java` directly from IntelliJ (right-click → Run).
 
 ---
 
