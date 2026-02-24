@@ -116,11 +116,15 @@ public class DatabaseConnection {
     //   building running until there's no water pressure.
     //
     // Hint:
-    //   if (connection != null) {
-    //       connection.close();
+    //   try {
+    //       if (connection != null) {
+    //           connection.close();
+    //       }
+    //   } catch (SQLException e) {
+    //       System.out.println("Error closing connection: " + e.getMessage());
     //   }
     // ============================================================
-    public static void closeConnection(Connection connection) throws SQLException {
+    public static void closeConnection(Connection connection) {
         // Write your code here
     }
 }
